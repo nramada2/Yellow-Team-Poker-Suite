@@ -75,7 +75,6 @@ class Evaluator:
         if counts == [3,1,1]:
             tri_rank = [t for t in rank_counts if rank_counts[t] == 3]
             return (4, tri_rank + [t for t in ranks if t != tri_rank[0]])
-            return 
 
         # 8. Two Pair
         if counts == [2,2,1]:

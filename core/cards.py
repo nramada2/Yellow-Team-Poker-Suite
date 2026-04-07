@@ -31,16 +31,22 @@ class Card:
         self.suit = suit
         self.rank = rank
         self.value = self.RANK_VALUES[rank]
+        self.flip = False
 
     def __repr__(self):
-        # Standardizes the output to be rank-suit
+        """Standardizes the output to be rank-suit"""
         return f"{self.rank} of {self.suit}"
 
     def __eq__(self, other):
-        #Allows comparing two cards: card1 == card2
+        """Allows comparing two cards: card1 == card2"""
         if not isinstance(other, Card):
             return False
         return self.rank == other.rank and self.suit == other.suit
+
+    def flip(self):
+        """Toggle the visibility state."""
+        self.is_face_up = not self.is_face_up
+
 
 class Deck:
     """
@@ -55,7 +61,7 @@ class Deck:
         self.reset()
 
     def reset(self):
-        # Fill the deck with 52 new Card objects
+        """Fill the deck with 52 new Card objects"""
         self.cards = [
             Card(suit, rank) 
             for suit in Card.SUITS 
@@ -63,11 +69,11 @@ class Deck:
         ]
 
     def shuffle(self):
-        # Use random to get a shuffle
+        """Use random to get a shuffle"""
         random.shuffle(self.cards)
 
     def draw(self, num=1):
-        #Removes 'num' cards from the top of the deck and returns a list of Card objects
+        """Removes 'num' cards from the top of the deck and returns a list of Card objects"""
         if num > len(self.cards):
             raise ValueError("Not enough cards left in the deck!")
         
@@ -75,5 +81,5 @@ class Deck:
         return drawn_cards
 
     def __len__(self):
-        # Use len(deck) to see cards remaining
+        """Use len(deck) to see cards remaining"""
         return len(self.cards)
